@@ -10,6 +10,12 @@ struct C;
 #[derive(Clone)]
 struct D;
 
+#[derive(Debug)]
+struct E;
+
+#[derive(Default)]
+struct F;
+
 fn main() {
     println!("{:?}", A(0) == A(0));
 
@@ -21,4 +27,9 @@ fn main() {
 
     let d0 = D;
     let _d1 = d0.clone();
+
+    println!("{:?}", E);
+
+    let _f = F::default();
+
 }
