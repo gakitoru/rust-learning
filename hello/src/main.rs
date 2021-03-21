@@ -11,6 +11,18 @@ enum Event {
     MouseDown {x: i32, y: i32}
 }
 
+fn func(code: i32) -> Result<i32, String> {
+    println!("code: {}", code);
+    Ok(100)
+}
+
+fn error_handling(result: Result<i32, String>) -> Result<i32, String> {
+    let code = result?;
+    println!("code: {}", code);
+    Ok(100)
+}
+
+
 fn main() {
     let s1: String = String::from("Hello World!");
     let s2: &str = &s1;
@@ -44,5 +56,30 @@ fn main() {
     let e1 = Event::Quit;
     let e2 = Event::MouseDown{x: 10, y: 10};
     
-    println!("{:#?}", e1)
+    println!("{:#?}", e1);
+
+    //let result: Result<i32, String> = Err("fuck!".to_string());
+    //let result: Result<i32, String> = Ok(200);
+    // match result {
+    //     Ok(code) => println!("code: {}", code),
+    //     Err(err) => println!("Err: {}", err),
+    // };
+    // if let Ok(code) = result {
+    //     println!("code: {}", code);
+    // }
+
+    // let result: Result<i32, String> = Ok(200);
+    // println!("code: {}", result.unwrap_or(-1));
+
+    // let result: Result<i32, String> = Err("error".to_string());
+    // println!("code: {}", result.unwrap_or(-1));
+    
+    // let result: Result<i32, String> = Ok(200);
+    // let next_result = result.and_then(func);
+
+    // let result: Result<i32, String> = Err("error".to_string());
+    // let next_result = result.and_then(func);
+
+    let result: Result<i32, String> = Ok(200);
+    let next_result = error_handling(result);
 }
